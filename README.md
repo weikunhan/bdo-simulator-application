@@ -1,2 +1,4 @@
 # BDO Simulator Application
-The BDO simulator application
+
+## Requirement
+streamlit 0.59 and upwards
