@@ -3,7 +3,6 @@
 ## Requirement
 * streamlit 1.12.0
 * numpy 1.23.1
-* 
 
 ## Release Notes
 * 2022/8/12 BDO Simulator version 1 released
