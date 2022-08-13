@@ -22,7 +22,7 @@
 # SOFTWARE.
 # ==============================================================================
 """ The Black Desert Online simulator web application
-Author: 
+Author:
 Weikun Han <weikunhan@g.ucla.edu>
 Li Qin <qinkroulis@gmail.com>
 Reference:
