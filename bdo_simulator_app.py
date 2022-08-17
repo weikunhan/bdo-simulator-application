@@ -127,6 +127,7 @@ def main():
             with st.spinner('Start simulating result...'):
                 best_time_utc_sec, best_succeeded_rate = simulate_bdo_succeeded_rate_v2(
                     succeeded_rate)
+
             best_time_count = best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
             best_time_converted = datetime.datetime.fromtimestamp(best_time_utc_sec)
             st.success(f'The simulate result show best succeeded rate: '
@@ -160,6 +161,7 @@ def main():
             with st.spinner('Start simulating result...'):
                 best_time_utc_sec, best_failed_rate = simulate_bdo_failed_rate_v1(
                     succeeded_rate)
+
             best_time_count = best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
             best_time_converted = datetime.datetime.fromtimestamp(best_time_utc_sec)
             st.error(f'The simulate result show best failed rate: '
