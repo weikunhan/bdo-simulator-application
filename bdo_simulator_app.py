@@ -28,7 +28,6 @@ Li Qin <qinkroulis@gmail.com>
 Reference:
 """
 
-# pylint: disable=E0611
 import time
 import datetime
 import streamlit as st
