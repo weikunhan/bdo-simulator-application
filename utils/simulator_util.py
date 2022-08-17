@@ -170,7 +170,7 @@ def simulate_bdo_succeeded_rate_v2(
     pool.close()
     pool.join()
 
-    for i, res in enumerate (res_list):
+    for i, res in enumerate(res_list):
         avg_succeeded_count = res
 
         if avg_succeeded_count > best_succeeded_count:
@@ -192,7 +192,7 @@ def get_avg_succeeded_count(
         time_utc_in_sec: the UTC time in seconds
 
     Returns:
-        avg_succeeded_count: the avarage succeeded count
+        avg_succeeded_count
     '''
 
     positive_case_count = 0
@@ -236,7 +236,7 @@ def simulate_bdo_failed_rate_v1(
     The range for python set to [0, RAND_MAX].
     RAND_MAX is 32767 = 2^15-1, so the maximum value of a 16-bit signed integer.
 
-    This version is concurrent verison XCPU_COUNT faster than v1
+    This version is concurrent verison XCPU_COUNT
 
     Args:
         succeeded_rate: the succeeded rate that user input
@@ -247,7 +247,7 @@ def simulate_bdo_failed_rate_v1(
 
     Returns:
         best_time_utc_sec
-        best_succeeded_rate
+        best_failed_rate
     '''
 
     best_time_utc_sec = 0
@@ -272,12 +272,12 @@ def simulate_bdo_failed_rate_v1(
     pool.close()
     pool.join()
 
-    for res in res_list:
-        current_utc_time, avg_succeeded_count = res
+    for i, res in enumerate(res_list):
+        avg_succeeded_count = res
 
         if avg_succeeded_count > best_failed_count:
             best_failed_count = avg_succeeded_count
-            best_time_utc_sec = current_utc_time - time_buffer
+            best_time_utc_sec = time_utc_now_sec + i - time_buffer
 
     best_failed_rate = best_failed_count / float(simiulated_times) * 100
     return best_time_utc_sec, best_failed_rate
@@ -286,7 +286,7 @@ def get_avg_failed_count(
     succeeded_rate: float,
     simiulated_times: int,
     time_utc_in_sec: int
-) -> tuple:
+) -> float:
     '''Get avarage falied count
 
     Args:
@@ -294,7 +294,7 @@ def get_avg_failed_count(
         time_utc_in_sec: the UTC time in seconds
 
     Returns:
-        avg_succeeded_count: the avarage succeeded count
+        avg_failed_count
     '''
 
     positive_case_count = 0
@@ -316,4 +316,4 @@ def get_avg_failed_count(
                  time_utc_in_sec,
                  positive_case_count,
                  negative_case_count)
-    return time_utc_in_sec, (positive_case_count + negative_case_count) / 2.0
+    return (positive_case_count + negative_case_count) / 2.0
