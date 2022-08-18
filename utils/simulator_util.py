@@ -273,10 +273,10 @@ def simulate_bdo_failed_rate_v1(
     pool.join()
 
     for i, res in enumerate(res_list):
-        avg_succeeded_count = res
+        avg_failed_count = res
 
-        if avg_succeeded_count > best_failed_count:
-            best_failed_count = avg_succeeded_count
+        if avg_failed_count > best_failed_count:
+            best_failed_count = avg_failed_count
             best_time_utc_sec = time_utc_now_sec + i - time_buffer
 
     best_failed_rate = best_failed_count / float(simiulated_times) * 100

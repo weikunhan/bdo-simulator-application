@@ -90,10 +90,11 @@ def main():
             time_counter = st.empty()
 
             with st.spinner('Start simulating result...'):
-                best_time_utc_sec, best_succeeded_rate = simulate_bdo_succeeded_rate_v1(
-                    succeeded_rate)
+                best_time_utc_sec, best_succeeded_rate = \
+                    simulate_bdo_succeeded_rate_v1(succeeded_rate)
 
-            best_time_count = best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
+            best_time_count = \
+                best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
             best_time_converted = datetime.datetime.fromtimestamp(best_time_utc_sec)
             st.success(f'The simulate result show best succeeded rate: '
                        f'{best_succeeded_rate:.2f}%', icon="✅")
@@ -124,10 +125,11 @@ def main():
             time_counter = st.empty()
 
             with st.spinner('Start simulating result...'):
-                best_time_utc_sec, best_succeeded_rate = simulate_bdo_succeeded_rate_v2(
-                    succeeded_rate)
+                best_time_utc_sec, best_succeeded_rate = \
+                    simulate_bdo_succeeded_rate_v2(succeeded_rate)
 
-            best_time_count = best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
+            best_time_count = \
+                best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
             best_time_converted = datetime.datetime.fromtimestamp(best_time_utc_sec)
             st.success(f'The simulate result show best succeeded rate: '
                        f'{best_succeeded_rate:.2f}%', icon="✅")
@@ -147,6 +149,8 @@ def main():
             max_value=100.00,
             format='%.2f')
         st.info(f'The input succeeded rate: {succeeded_rate}%', icon="ℹ️")
+        st.info(f'The calculated failed rate: {100 - succeeded_rate:.2f}%',
+                icon="ℹ️")
         st.text('The current config setting for simulator')
         st.text(' - simulated_times (total simulation run each second): 10000')
         st.text(' - time_range (future time window in seconds): 600')
@@ -158,10 +162,11 @@ def main():
             time_counter = st.empty()
 
             with st.spinner('Start simulating result...'):
-                best_time_utc_sec, best_failed_rate = simulate_bdo_failed_rate_v1(
-                    succeeded_rate)
+                best_time_utc_sec, best_failed_rate = \
+                    simulate_bdo_failed_rate_v1(succeeded_rate)
 
-            best_time_count = best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
+            best_time_count = \
+                best_time_utc_sec - int(datetime.datetime.utcnow().timestamp())
             best_time_converted = datetime.datetime.fromtimestamp(best_time_utc_sec)
             st.error(f'The simulate result show best failed rate: '
                      f'{best_failed_rate:.2f}%', icon="🚨")
