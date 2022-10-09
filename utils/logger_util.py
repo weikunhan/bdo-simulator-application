@@ -32,8 +32,7 @@ import time
 import os
 from typing import Any
 
-LOG_PATCH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs')
+LOG_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', 'logs')
 
 def get_time() -> str:
     """Get current system time"""
@@ -45,10 +44,10 @@ def initial_log(log_filepath: str = None) -> Any:
     """Initial log with the standard template"""
 
     if log_filepath is None:
-        if not os.path.exists(LOG_PATCH):
-            os.makedirs(LOG_PATCH)
+        if not os.path.exists(LOG_PATH):
+            os.makedirs(LOG_PATH)
 
-        log_filepath =  os.path.join(LOG_PATCH, f'{get_time()}.log')
+        log_filepath =  os.path.join(LOG_PATH, f'{get_time()}.log')
 
     logger = logging.getLogger()
     logger_format = logging.Formatter('[%(asctime)s]-[%(processName)s]-[%(threadName)s]-[%(levelname)s]: %(message)s')
