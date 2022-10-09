@@ -35,8 +35,6 @@ from utils.simulator_util import simulate_bdo_succeeded_rate_v1
 from utils.simulator_util import simulate_bdo_succeeded_rate_v2
 from utils.logger_util import initial_log
 
-# pylint: disable=E1111
-# pylint: disable=E1120
 class TestSimulator(unittest.TestCase):
     ''' Simulator utility library Test'''
 
