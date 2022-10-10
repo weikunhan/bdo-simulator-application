@@ -75,8 +75,17 @@ $ python -m unittest discover tests
 ```
 $ pip install pylint
 ```
+*Suggest veriable naming roles*
+*xxx_count - the numbers data type in Python, which is the integer number used for counting*
+*xxx_list - the list data type in Python*
+*xxx_tuple - the tuple data type in Python*
+*xxx_dict - the dictionary data type in Python*
+"xxx" - the single word without underscore means that is user defined or imported object"
+"xxx_xxx" - the multiple words with underscore means that instanced object method or veriable, which required more meaningful naming"
+"xxx_xxx" - the multiple words with underscore also means that number data type or sting data type in Python, which required more meaningful naming"
+
 ## Screenshots
-![](example1.PNG)
-![](example2.PNG)
+![](docs/example1.PNG)
+![](docs/example2.PNG)
 ## License
 [MIT License](LICENSE)

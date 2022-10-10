@@ -39,10 +39,10 @@ def main():
 
     config_dict = json.loads(open(CONFIG_PATH, 'r', encoding='utf8').read())
     ngrok.set_auth_token(config_dict['authtoken'])
-    internet_url = ngrok.connect(8501, bind_tls=True)
+    ngrok_connect = ngrok.connect(8501, bind_tls=True)
     ngrok_process = ngrok.get_ngrok_process()
     print('\n  You can now view your Streamlit app on internat in your browser.')
-    print(f'\n  {internet_url}\n')
+    print(f'\n  {ngrok_connect}\n')
 
     try:
         # block until CTRL-C or some other terminating event

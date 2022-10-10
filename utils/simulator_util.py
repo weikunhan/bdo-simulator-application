@@ -90,14 +90,14 @@ def simulate_bdo_succeeded_rate_v1(
         np.random.seed(random_seed_value)
 
         for random_number in np.random.randint(32767, size=simiulated_times):
-            random_value = random_number % 10000
+            current_rate = random_number % 10000
 
             # succeeded if random value is less or equal to the succeeded rate
-            if random_value <= succeeded_rate * 100:
+            if current_rate <= succeeded_rate * 100:
                 positive_case_count += 1
 
             # succeeded if random value is greater or equal to the failed rate
-            if random_value >= 10000 - succeeded_rate * 100:
+            if current_rate >= 10000 - succeeded_rate * 100:
                 negative_case_count += 1
 
         logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',
@@ -200,14 +200,14 @@ def get_avg_succeeded_count(
     np.random.seed(time_utc_in_sec)
 
     for random_number in np.random.randint(32767, size=simiulated_times):
-        random_value =  random_number % 10000
+        current_rate =  random_number % 10000
 
         # succeeded if random value is less or equal to the succeeded rate
-        if random_value <= succeeded_rate:
+        if current_rate <= succeeded_rate:
             positive_case_count += 1
 
         # succeeded if random value is greater or equal to the failed rate
-        if random_value >= 10000 - succeeded_rate:
+        if current_rate >= 10000 - succeeded_rate:
             negative_case_count += 1
 
     logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',
@@ -302,14 +302,14 @@ def get_avg_failed_count(
     np.random.seed(time_utc_in_sec)
 
     for random_number in np.random.randint(32767, size=simiulated_times):
-        random_value =  random_number % 10000
+        current_rate =  random_number % 10000
 
         # succeeded if random value is less or equal to the succeeded rate
-        if random_value > succeeded_rate:
+        if current_rate > succeeded_rate:
             positive_case_count += 1
 
         # succeeded if random value is greater or equal to the failed rate
-        if random_value < 10000 - succeeded_rate:
+        if current_rate < 10000 - succeeded_rate:
             negative_case_count += 1
 
     logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',
