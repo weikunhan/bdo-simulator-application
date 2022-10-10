@@ -35,8 +35,6 @@ from utils.simulator_util import simulate_bdo_succeeded_rate_v1
 from utils.simulator_util import simulate_bdo_succeeded_rate_v2
 from utils.logger_util import initial_log
 
-# pylint: disable=E1111
-# pylint: disable=E1120
 class TestSimulator(unittest.TestCase):
     ''' Simulator utility library Test'''
 
@@ -72,6 +70,7 @@ class TestSimulator(unittest.TestCase):
             simiulated_times=self.simiulated_times)
         time_end = time.time()
         self.logger.info('Version 2 time spend: %s', time_end - time_start)
+        
         self.assertEqual(best_time_utc_sec_v1, best_time_utc_sec_v2)
         self.assertEqual(best_succeeded_rate_v1, best_succeeded_rate_v2)
 

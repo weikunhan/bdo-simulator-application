@@ -43,7 +43,7 @@ def simulate_bdo_succeeded_rate_v1(
     time_buffer: int = 0,
     time_utc_sec: int = None
 ) -> tuple:
-    '''Predict game random generator bias for UTC time and succeeded rate
+    """Predict game random generator bias for UTC time and succeeded rate
 
     Game used C++ implemetation.
     https://cplusplus.com/reference/cstdlib/rand/
@@ -66,7 +66,7 @@ def simulate_bdo_succeeded_rate_v1(
     Returns:
         best_time_utc_sec
         best_succeeded_rate
-    '''
+    """
 
     best_time_utc_sec = 0
     best_succeeded_count = 0
@@ -90,14 +90,14 @@ def simulate_bdo_succeeded_rate_v1(
         np.random.seed(random_seed_value)
 
         for random_number in np.random.randint(32767, size=simiulated_times):
-            random_value = random_number % 10000
+            current_rate = random_number % 10000
 
             # succeeded if random value is less or equal to the succeeded rate
-            if random_value <= succeeded_rate * 100:
+            if current_rate <= succeeded_rate * 100:
                 positive_case_count += 1
 
             # succeeded if random value is greater or equal to the failed rate
-            if random_value >= 10000 - succeeded_rate * 100:
+            if current_rate >= 10000 - succeeded_rate * 100:
                 negative_case_count += 1
 
         logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',
@@ -121,7 +121,7 @@ def simulate_bdo_succeeded_rate_v2(
     time_buffer: int = 0,
     time_utc_sec: int = None
 ) -> tuple:
-    '''Predict game random generator bias for UTC time and succeeded rate
+    """Predict game random generator bias for UTC time and succeeded rate
 
     Game used C++ implemetation.
     https://cplusplus.com/reference/cstdlib/rand/
@@ -146,7 +146,7 @@ def simulate_bdo_succeeded_rate_v2(
     Returns:
         best_time_utc_sec
         best_succeeded_rate
-    '''
+    """
 
     best_time_utc_sec = 0
     best_succeeded_count = 0
@@ -185,7 +185,7 @@ def get_avg_succeeded_count(
     simiulated_times: int,
     time_utc_in_sec: int
 ) -> float:
-    '''Get avarage succeeded count
+    """Get avarage succeeded count
 
     Args:
         simiulated_times: the total simulation run each second
@@ -193,21 +193,21 @@ def get_avg_succeeded_count(
 
     Returns:
         avg_succeeded_count
-    '''
+    """
 
     positive_case_count = 0
     negative_case_count = 0
     np.random.seed(time_utc_in_sec)
 
     for random_number in np.random.randint(32767, size=simiulated_times):
-        random_value =  random_number % 10000
+        current_rate =  random_number % 10000
 
         # succeeded if random value is less or equal to the succeeded rate
-        if random_value <= succeeded_rate:
+        if current_rate <= succeeded_rate:
             positive_case_count += 1
 
         # succeeded if random value is greater or equal to the failed rate
-        if random_value >= 10000 - succeeded_rate:
+        if current_rate >= 10000 - succeeded_rate:
             negative_case_count += 1
 
     logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',
@@ -223,7 +223,7 @@ def simulate_bdo_failed_rate_v1(
     time_buffer: int = 0,
     time_utc_sec: int = None
 ) -> tuple:
-    '''Predict game random generator bias for UTC time and succeeded rate
+    """Predict game random generator bias for UTC time and succeeded rate
 
     Game used C++ implemetation.
     https://cplusplus.com/reference/cstdlib/rand/
@@ -248,7 +248,7 @@ def simulate_bdo_failed_rate_v1(
     Returns:
         best_time_utc_sec
         best_failed_rate
-    '''
+    """
 
     best_time_utc_sec = 0
     best_failed_count = 0
@@ -287,7 +287,7 @@ def get_avg_failed_count(
     simiulated_times: int,
     time_utc_in_sec: int
 ) -> float:
-    '''Get avarage falied count
+    """Get avarage falied count
 
     Args:
         simiulated_times: the total simulation run each second
@@ -295,21 +295,21 @@ def get_avg_failed_count(
 
     Returns:
         avg_failed_count
-    '''
+    """
 
     positive_case_count = 0
     negative_case_count = 0
     np.random.seed(time_utc_in_sec)
 
     for random_number in np.random.randint(32767, size=simiulated_times):
-        random_value =  random_number % 10000
+        current_rate =  random_number % 10000
 
         # succeeded if random value is less or equal to the succeeded rate
-        if random_value > succeeded_rate:
+        if current_rate > succeeded_rate:
             positive_case_count += 1
 
         # succeeded if random value is greater or equal to the failed rate
-        if random_value < 10000 - succeeded_rate:
+        if current_rate < 10000 - succeeded_rate:
             negative_case_count += 1
 
     logger.debug('time=%s, positive_case_count=%s, negative_case_count=%s. ',

@@ -24,7 +24,6 @@
 """ The Black Desert Online simulator web application
 Author:
 Weikun Han <weikunhan@g.ucla.edu>
-Li Qin <qinkroulis@gmail.com>
 Reference:
 """
 
@@ -64,14 +63,14 @@ def main():
 
     #st.title('Black Desert Online simulator ')
     stc.html(CUSTOM_TITLE)
-    menu = ['Black Desert Online simulator 1',
-            'Black Desert Online simulator 2',
-            'Black Desert Online simulator 3',
-            'Black Desert Online simulator 4',
-            'About']
-    choice = st.sidebar.selectbox('Menu',menu)
+    menu_list = ['Black Desert Online simulator 1',
+                 'Black Desert Online simulator 2',
+                 'Black Desert Online simulator 3',
+                 'Black Desert Online simulator 4',
+                 'About']
+    choiced_simulator = st.sidebar.selectbox('Menu',menu_list)
 
-    if choice == 'Black Desert Online simulator 1':
+    if choiced_simulator == 'Black Desert Online simulator 1':
         st.subheader('Black Desert Online simulator succeeded rate v1')
         succeeded_rate = st.number_input(
             label='Please input your current succeeded rate: ',
@@ -106,7 +105,7 @@ def main():
                 time_counter.metric(
                     'Countdown', f'{time_sec // 60:02d}:{time_sec% 60:02d}')
                 time.sleep(1)
-    elif choice == 'Black Desert Online simulator 2':
+    elif choiced_simulator == 'Black Desert Online simulator 2':
         st.subheader('Black Desert Online simulator succeeded rate v2')
         succeeded_rate = st.number_input(
             label='Please input your current succeeded rate: ',
@@ -141,7 +140,7 @@ def main():
                 time_counter.metric(
                     'Countdown', f'{time_sec // 60:02d}:{time_sec% 60:02d}')
                 time.sleep(1)
-    elif choice == 'Black Desert Online simulator 3':
+    elif choiced_simulator == 'Black Desert Online simulator 3':
         st.subheader('Black Desert Online simulator failed rate v1')
         succeeded_rate = st.number_input(
             label='Please input your current succeeded rate: ',
@@ -178,7 +177,7 @@ def main():
                 time_counter.metric(
                     'Countdown', f'{time_sec // 60:02d}:{time_sec% 60:02d}')
                 time.sleep(1)
-    elif choice == 'Black Desert Online simulator 4':
+    elif choiced_simulator == 'Black Desert Online simulator 4':
         st.subheader('Black Desert Online simulator failed rate v2')
         st.info('This is info')
         st.text('This is text')

@@ -21,42 +21,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ==============================================================================
-""" Logger utility library
+""" The Black Desert Online simulator web application on internet
 Author:
 Weikun Han <weikunhan@g.ucla.edu>
 Reference:
 """
 
-import logging
-import time
 import os
-from typing import Any
+import json
+from pyngrok import ngrok
 
-LOG_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', 'logs')
+CONFIG_PATH = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)), 'config', 'ngrok_config.json')
 
-def get_time() -> str:
-    """Get current system time"""
+def main():
+    """ Main funtion"""
 
-    return time.strftime('%Y%m%d_%H%M%S', time.localtime())
+    config_dict = json.loads(open(CONFIG_PATH, 'r', encoding='utf8').read())
+    ngrok.set_auth_token(config_dict['authtoken'])
+    ngrok_connect = ngrok.connect(8501, bind_tls=True)
+    ngrok_process = ngrok.get_ngrok_process()
+    print('\n  You can now view your Streamlit app on internat in your browser.')
+    print(f'\n  {ngrok_connect}\n')
 
-# pylint: disable=line-too-long
-def initial_log(log_filepath: str = None) -> Any:
-    """Initial log with the standard template"""
+    try:
+        # block until CTRL-C or some other terminating event
+        ngrok_process.proc.wait()
+    except KeyboardInterrupt:
+        print("\n  You shutting down Streamlit app on the internet.\n")
+        ngrok.kill()
 
-    if log_filepath is None:
-        if not os.path.exists(LOG_PATH):
-            os.makedirs(LOG_PATH)
-
-        log_filepath =  os.path.join(LOG_PATH, f'{get_time()}.log')
-
-    logger = logging.getLogger()
-    logger_format = logging.Formatter('[%(asctime)s]-[%(processName)s]-[%(threadName)s]-[%(levelname)s]: %(message)s')
-    stream_handler = logging.StreamHandler()
-    file_handdler = logging.FileHandler(log_filepath)
-    stream_handler.setFormatter(logger_format)
-    file_handdler.setFormatter(logger_format)
-    logger.addHandler(stream_handler)
-    logger.addHandler(file_handdler)
-    logger.setLevel(logging.INFO)
-
-    return logger
+if __name__ == '__main__':
+    main()
